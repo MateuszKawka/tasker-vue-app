@@ -16,9 +16,9 @@ Supported by Vue.
 
 ## Project Screen Shot(s)
 
-![Main screen](https://github.com/MateuszKawka/tasker-vue-app/blob/readme/screenshot1.png "Main screen")
+![Main screen](https://github.com/MateuszKawka/tasker-vue-app/blob/master/readme/screenshot1.png "Main screen")
 
-![New task screen](https://github.com/MateuszKawka/tasker-vue-app/blob/readme/screenshot2.png "New task modal screen")
+![New task screen](https://github.com/MateuszKawka/tasker-vue-app/blob/master/readme/screenshot2.png "New task modal screen")
 
 ## Installation and Setup Instructions
 
