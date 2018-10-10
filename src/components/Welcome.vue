@@ -1,12 +1,10 @@
 <template>
-
   <div class="welcome" v-if='showWelcome'>
       <h1 class='welcome__title'>Hello in task app </h1>
       <input type='text' class='welcome__input' v-model='name' placeholder="Your name">
       <button type='button' class='welcome__button' @click='addName'>Add my name</button>
       <button type='button' class='welcome__button' @click='close'>Don't do that</button>
   </div>
-
 </template>
 
 <script>
@@ -19,7 +17,7 @@ export default {
   },
   computed: {
     showWelcome() {
-      return this.$store.getters.getWelcomeShow;
+      return this.$store.state.welcome;
     }
   },
   methods: {
@@ -36,8 +34,7 @@ export default {
   },
   mounted(){
       if(localStorage.getItem('name') !== null) {
-          
-          this.close()
+          this.$store.commit('welcomeTrigger')
       }
   }
 };

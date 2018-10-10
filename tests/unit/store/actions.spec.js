@@ -54,18 +54,20 @@ var store = {
   }
 }
 
-test('actions--infoClose', () => {
-  actions.infoClose()
-  expect(setTimeout).toHaveBeenCalledTimes(1);
-  expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 4000);
-})
-
-test('actions--saveTasksToLocalStorage', () => {
-  actions.saveTasksToLocalStorage(store)
-  expect(localStorage.tasks).toEqual(JSON.stringify(store.state.tasks))
-})
-
-test('actions--saveNameToLocalStorage', () => {
-  actions.saveNameToLocalStorage(store)
-  expect(localStorage.name).toEqual(JSON.stringify(store.state.name))
-})
+describe('store actions tests', () => {
+  test('actions--infoClose', () => {
+    actions.infoClose()
+    expect(setTimeout).toHaveBeenCalledTimes(1);
+    expect(setTimeout).toHaveBeenLastCalledWith(expect.any(Function), 4000);
+  })
+  
+  test('actions--saveTasksToLocalStorage', () => {
+    actions.saveTasksToLocalStorage(store)
+    expect(localStorage.tasks).toEqual(JSON.stringify(store.state.tasks))
+  })
+  
+  test('actions--saveNameToLocalStorage', () => {
+    actions.saveNameToLocalStorage(store)
+    expect(localStorage.name).toEqual(JSON.stringify(store.state.name))
+  })
+});

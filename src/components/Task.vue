@@ -1,16 +1,13 @@
 <template>
   <li>
-    <transition name='slide' mode="out-in">
       <article class='task' :key='task.id'>
         <p class='task__title my-handle' 
         :class='{"completed": task.completed}'>
         <i class="material-icons task-icon" 
-        :class='{"task-icon--completed": task.completed}'>grade
-  </i>{{task.title}} </p>
+        :class='{"task-icon--completed": task.completed}'>grade</i>{{task.title}}</p>
         <p class='task__description'>{{task.desc}}</p>
         <TaskControl :data-id='task.id' />
       </article>
-    </transition>
   </li>
 </template>
 
@@ -35,7 +32,7 @@
     padding: 1rem 1rem 3rem 1rem;
     border-bottom: 1px solid $details-ui-color;
   }
-  
+   
   .task--completed {
     background: $main-color;
   }
@@ -48,7 +45,6 @@
     padding-bottom: .5rem;
     display: flex;
     align-items: center;
-    cursor: move;
   }
   
   .task__description {

@@ -12,27 +12,26 @@
       <main class='main'>
         <transition name='slide'>
         <section class="tasks-container" v-show='!load'>
-          <Draggable
-          v-model="tasks"
-          :options="{handle:'.my-handle'}">
-            <transition-group 
-            name='flip-list' 
-            tag="ul">
+           <ul>
               <Task 
               v-for='task in tasks'
               :key='task.id' 
               :task='task' />
-            </transition-group>
-          </Draggable>
+            </ul>
         </section>
         </transition>
-        <button class='new-task' @click='modalTrigger'><i class="material-icons">
+        <button class='button button--new-task' @click='modalTrigger'><i class="material-icons">
     add_circle
     </i></button>
         <TaskModal :modalTrigger='modalTrigger'/>
         <EditTask/>
+        <Settings />
       </main>
     </div>
+    <button class='button button--settings' @click='settingsTrigger'><i class="material-icons">
+settings
+</i></button>
+    
   </div>
 </transition>
 </template>
@@ -43,8 +42,8 @@ import Header from "./components/Header.vue";
 import TaskModal from "@/components/TaskModal.vue";
 import Info from "@/components/Info.vue";
 import EditTask from "@/components/EditTask.vue";
-import Welcome from "@/components/Welcome.vue";
-import Draggable from "vuedraggable";
+import Welcome from "@/components/Welcome.vue"
+import Settings from "@/components/Settings.vue"
 
 import { mapState } from "vuex";
 import { mapGetters } from "vuex";
@@ -58,7 +57,7 @@ export default {
     Info,
     EditTask,
     Welcome,
-    Draggable
+    Settings
   },
   data() {
     return {
@@ -69,7 +68,9 @@ export default {
     modalTrigger() {
       this.$store.commit("modalTrigger");
     },
-    infoTrigger() {}
+    settingsTrigger() {
+       this.$store.commit("settingsTrigger");
+    }
   },
   computed: {
     ...mapState({
@@ -104,7 +105,6 @@ body {
   background: $light-color;
   width: 100%;
   height: 100%;
-  overflow-y: hidden;
 }
 
 html {
@@ -145,17 +145,31 @@ ul {
 .material-icons {
   color: $main-color;
 }
-
-.new-task {
-  position: fixed;
+.button {
   background: none;
   border: none;
-  bottom: 12px;
 }
 
-.new-task i {
-  font-size: 6rem;
+.button--new-task {
+  position: fixed;
+  bottom: 12px;
+
+    i {
+      font-size: 6rem;
+    }
 }
+
+
+.button--settings {
+  position: fixed;
+  bottom: 12px;
+  right: 12px;
+  i {
+    font-size: 3rem;
+  }
+}
+
+
 
 .main {
   display: flex;
@@ -171,7 +185,7 @@ ul {
 }
 
 .tasks-container {
-  width: 100%;
+  width: 90%;
 }
 
 .flip-list-move {

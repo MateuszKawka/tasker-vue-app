@@ -11,7 +11,7 @@ export default {
   name: "Info",
   computed: {
     msg() {
-      return this.$store.getters.errorMsg;
+      return this.$store.state.errorMsg;
     }
   }
 };

@@ -1,5 +1,5 @@
 export default {
-    numberOfTasks: state => state.tasks.filter((item) => item.completed === false).length,
+    numberOfTasks: state => state.tasks.filter((item) => item.completed === false).length + 1,
     listOfTask: state => state.tasks.filter((item) => item.completed === false),
     listOfCompletedTasks: state => state.tasks.filter((item) => item.completed === true),
     numberOfCompletedTasks: state => state.tasks.filter((item) => item.completed === true).length,

@@ -35,7 +35,7 @@ const months = [
 ];
 
 export default {
-  name: "Info",
+  name: "Date",
   data() {
     return {
       today: Date,

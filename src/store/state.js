@@ -1,6 +1,5 @@
 export default {
-    tasks: [
-    ],
+    tasks: [],
     showModal: false,
     showInfo: false,
     errorMsg: String,
@@ -8,5 +7,6 @@ export default {
     editedTaskIndex: Number,
     showUncompleted: true,
     name: String,
-    welcome: true
+    welcome: true,
+    showSettings: false
 }

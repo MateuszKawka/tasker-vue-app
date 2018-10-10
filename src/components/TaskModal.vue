@@ -48,7 +48,7 @@ export default {
         this.modalTrigger();
         this.$store.dispatch("saveTasksToLocalStorage");
       } else {
-        this.msg = "Must have more than 3 characters.";
+        this.msg = "Must have more than 3 and lower than 32 characters.";
         this.$store.commit("errorMsg", this.msg);
         this.$store.commit("infoTrigger");
         this.$store.dispatch("infoClose");
@@ -59,7 +59,9 @@ export default {
       this.newTask.id = id;
     },
     validation() {
-      if (this.newTask.title.length >= 3 && this.newTask.desc.length >= 3) {
+      if (this.newTask.title.length >= 3 
+          && this.newTask.title.length <= 32 
+          && this.newTask.desc.length >= 3) {
         this.valid = true;
       } else {
         this.valid = false;
