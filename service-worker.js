@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/3.4.1/workbox-sw.js");
 
 importScripts(
-  "/tasker/precache-manifest.48f89ba566c86a6aa09bc3fd685981f4.js"
+  "/tasker-vue-app/precache-manifest.f5eaeedec6adb39a02146b3d96827e27.js"
 );
 
 workbox.core.setCacheNameDetails({prefix: "project"});
