@@ -3,32 +3,23 @@
   <div id="app">
     <Welcome/>
     <transition name='slide'>
-      <Header name='Matthew' />
+      <Header />
     </transition>
     <div class="mega-wrapper">
       <transition name='slide'>
         <Info v-if='showInfo' />
       </transition>
       <main class='main'>
-        <transition name='slide'>
-        <section class="tasks-container" v-show='!load'>
-           <ul>
-              <Task 
-              v-for='task in tasks'
-              :key='task.id' 
-              :task='task' />
-            </ul>
-        </section>
-        </transition>
+        <TasksContainer />
         <button class='button button--new-task' @click='modalTrigger'><i class="material-icons">
     add_circle
     </i></button>
         <TaskModal :modalTrigger='modalTrigger'/>
         <EditTask/>
-        <Settings />
+        <Settings v-if='showSettings'/>
       </main>
     </div>
-    <button class='button button--settings' @click='settingsTrigger'><i class="material-icons">
+    <button class='button button--settings' :class='{"button--active": showSettings}' @click='settingsTrigger'><i class="material-icons">
 settings
 </i></button>
     
@@ -37,21 +28,19 @@ settings
 </template>
 
 <script>
-import Task from "./components/Task.vue";
-import Header from "./components/Header.vue";
-import TaskModal from "@/components/TaskModal.vue";
-import Info from "@/components/Info.vue";
-import EditTask from "@/components/EditTask.vue";
-import Welcome from "@/components/Welcome.vue"
-import Settings from "@/components/Settings.vue"
-
-import { mapState } from "vuex";
-import { mapGetters } from "vuex";
+import Header from './components/Header.vue';
+import TaskModal from '@/components/TaskModal.vue';
+import Info from '@/components/Info.vue';
+import EditTask from '@/components/EditTask.vue';
+import Welcome from '@/components/Welcome.vue';
+import Settings from '@/components/Settings.vue';
+import TasksContainer from '@/components/TasksContainer.vue';
+import { mapState } from 'vuex';
 
 export default {
-  name: "app",
+  name: 'app',
   components: {
-    Task,
+    TasksContainer,
     Header,
     TaskModal,
     Info,
@@ -59,48 +48,30 @@ export default {
     Welcome,
     Settings
   },
-  data() {
-    return {
-      load: false
-    };
-  },
   methods: {
     modalTrigger() {
-      this.$store.commit("modalTrigger");
+      this.$store.commit('modalTrigger');
     },
     settingsTrigger() {
-       this.$store.commit("settingsTrigger");
+      this.$store.commit('settingsTrigger');
     }
   },
   computed: {
     ...mapState({
-      showUncompleted: state => state.showUncompleted,
       showModal: state => state.showModal,
-      showInfo: state => state.showInfo
-    }),
-    ...mapGetters(["listOfTask", "listOfCompletedTasks"]),
-    tasks: {
-      get() {
-        if (this.showUncompleted === true) {
-          return this.listOfTask;
-        } else {
-          return this.listOfCompletedTasks;
-        }
-      },
-      set(value) {
-        this.$store.commit("updateTasks", value);
-      }
-    }
+      showInfo: state => state.showInfo,
+      showSettings: state => state.showSettings
+    })
   },
   mounted() {
-    this.$store.dispatch("getTasksFromLocalStorage");
-    this.$store.dispatch("getNameFromLocalStorage");
+    this.$store.dispatch('getTasksFromLocalStorage');
+    this.$store.dispatch('getNameFromLocalStorage');
   }
 };
 </script>
 
 <style lang="scss">
-@import "@/_variables.scss";
+@import '@/_variables.scss';
 body {
   background: $light-color;
   width: 100%;
@@ -119,7 +90,7 @@ ul {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-size: 1.6rem;
 }
 
@@ -131,7 +102,7 @@ ul {
 
 .slide-enter-active,
 .slide-leave-active {
-  transition: all 0.2s;
+  transition: all 0.25s;
 }
 
 .slide-enter,
@@ -154,11 +125,10 @@ ul {
   position: fixed;
   bottom: 12px;
 
-    i {
-      font-size: 6rem;
-    }
+  i {
+    font-size: 6rem;
+  }
 }
-
 
 .button--settings {
   position: fixed;
@@ -169,7 +139,11 @@ ul {
   }
 }
 
-
+.button--active {
+  i {
+    color: #fff;
+  }
+}
 
 .main {
   display: flex;

@@ -17,12 +17,12 @@
 
 <script>
 export default {
-  name: "EditTask",
+  name: 'EditTask',
   data() {
     return {
       task: {
-        title: "",
-        desc: "",
+        title: '',
+        desc: '',
         completed: false,
         id: Number
       },
@@ -43,7 +43,7 @@ export default {
   },
   methods: {
     closeModal() {
-      this.$store.commit("editModalTrigger");
+      this.$store.commit('editModalTrigger');
     },
     getTaskData() {
       let index = this.editedTaskIndex;
@@ -57,9 +57,9 @@ export default {
         modifedTask: this.task
       };
       console.log(modifyConfig);
-      this.$store.commit("modifedTask", modifyConfig);
-      this.$store.dispatch("saveTasksToLocalStorage");
-      this.$store.commit("editModalTrigger");
+      this.$store.commit('modifedTask', modifyConfig);
+      this.$store.dispatch('saveTasksToLocalStorage');
+      this.$store.commit('editModalTrigger');
     }
   },
   updated() {}
@@ -68,7 +68,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "@/_variables.scss";
+@import '@/_variables.scss';
 
 .modal {
   z-index: 2;

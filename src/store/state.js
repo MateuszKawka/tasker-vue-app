@@ -9,4 +9,4 @@ export default {
     name: String,
     welcome: true,
     showSettings: false
-}
+} 

@@ -15,7 +15,7 @@
 
 <script>
 export default {
-  name: "Bar",
+  name: 'Bar',
   computed: {
     tasks() {
       return this.$store.getters.numberOfTasks;
@@ -26,10 +26,10 @@ export default {
   },
   methods: {
     showUncompletedTasks() {
-      this.$store.commit("viewTrigger", true);
+      this.$store.commit('viewTrigger', true);
     },
     showCompletedTasks() {
-      this.$store.commit("viewTrigger", false);
+      this.$store.commit('viewTrigger', false);
     }
   }
 };
@@ -37,7 +37,7 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "@/_variables.scss";
+@import '@/_variables.scss';
 
 .bar {
   width: 100%;

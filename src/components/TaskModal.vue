@@ -17,15 +17,15 @@
 
 <script>
 export default {
-  name: "TaskModal",
+  name: 'TaskModal',
   props: {
     modalTrigger: Function
   },
   data() {
     return {
       newTask: {
-        title: "",
-        desc: "",
+        title: '',
+        desc: '',
         completed: false,
         id: Number
       },
@@ -43,15 +43,15 @@ export default {
       this.validation();
       if (this.valid) {
         this.createID();
-        this.$store.commit("addNewTask", Object.assign({}, this.newTask));
-        this.clearInputs()
+        this.$store.commit('addNewTask', Object.assign({}, this.newTask));
+        this.clearInputs();
         this.modalTrigger();
-        this.$store.dispatch("saveTasksToLocalStorage");
+        this.$store.dispatch('saveTasksToLocalStorage');
       } else {
-        this.msg = "Must have more than 3 and lower than 32 characters.";
-        this.$store.commit("errorMsg", this.msg);
-        this.$store.commit("infoTrigger");
-        this.$store.dispatch("infoClose");
+        this.msg = 'Must have more than 3 and lower than 32 characters.';
+        this.$store.commit('errorMsg', this.msg);
+        this.$store.commit('infoTrigger');
+        this.$store.dispatch('infoClose');
       }
     },
     createID() {
@@ -59,17 +59,19 @@ export default {
       this.newTask.id = id;
     },
     validation() {
-      if (this.newTask.title.length >= 3 
-          && this.newTask.title.length <= 32 
-          && this.newTask.desc.length >= 3) {
+      if (
+        this.newTask.title.length >= 3 &&
+        this.newTask.title.length <= 32 &&
+        this.newTask.desc.length >= 3
+      ) {
         this.valid = true;
       } else {
         this.valid = false;
       }
     },
     clearInputs() {
-      this.newTask.title = ''
-      this.newTask.desc = ''
+      this.newTask.title = '';
+      this.newTask.desc = '';
     }
   }
 };

@@ -14,25 +14,25 @@
 </template>
 
 <script>
-import Bar from "@/components/Bar.vue";
-import Date from "@/components/Date.vue";
+import Bar from '@/components/Bar.vue';
+import Date from '@/components/Date.vue';
 export default {
-  name: "Header",
+  name: 'Header',
   components: {
     Bar,
     Date
   },
   methods: {
     modalTrigger() {
-      this.$store.commit("modalTrigger");
+      this.$store.commit('modalTrigger');
     }
   },
   computed: {
     showModal() {
-      return this.$store.state.showModal
+      return this.$store.state.showModal;
     },
-    name(){
-      return this.$store.state.name
+    name() {
+      return this.$store.state.name;
     }
   }
 };
@@ -75,13 +75,11 @@ background: linear-gradient(to right, #516395, #614385); /* W3C, IE 10+/ Edge, F
   padding-top: 1rem;
 }
 
-
 .container {
   margin-bottom: 1.5rem;
 }
 
 .hello-text {
-  
 }
 
 .wrapper {
@@ -94,8 +92,7 @@ background: linear-gradient(to right, #516395, #614385); /* W3C, IE 10+/ Edge, F
   margin-bottom: 6rem;
 }
 
-
-.header__title{
+.header__title {
   font-size: 2.6rem;
   color: $light-color;
   font-weight: 100;

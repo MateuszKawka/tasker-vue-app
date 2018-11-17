@@ -13,9 +13,9 @@
 </template>
 
 <script>
-import TaskButton from "@/components/TaskButton.vue";
+import TaskButton from '@/components/TaskButton.vue';
 export default {
-  name: "TaskControl",
+  name: 'TaskControl',
   components: {
     TaskButton
   },
@@ -23,19 +23,19 @@ export default {
     return {
       buttons: [
         {
-          name: "done",
-          iconClass: "check_circle_outline",
+          name: 'done',
+          iconClass: 'check_circle_outline',
           buttonFunction: this.doneTask
         },
         {
-          name: "edit",
-          iconClass: "edit",
+          name: 'edit',
+          iconClass: 'edit',
           buttonFunction: this.editTask,
           taskId: 2
         },
         {
-          name: "delete",
-          iconClass: "remove_circle_outline",
+          name: 'delete',
+          iconClass: 'remove_circle_outline',
           buttonFunction: this.removeTask
         }
       ],
@@ -43,25 +43,25 @@ export default {
     };
   },
   methods: {
-    doneTask(el) {
+    doneTask(el, completed) {
       let id = el.target.parentNode.parentNode.dataset.id;
       console.log(`id from dataset ${id}`);
-      this.$store.commit("doneTask", id);
-      this.$store.dispatch("saveTasksToLocalStorage");
+      this.$store.commit('doneTask', id, completed);
+      this.$store.dispatch('saveTasksToLocalStorage');
     },
-    removeTask(el) {
+    removeTask(el, completed) {
       let id = el.target.parentNode.parentNode.dataset.id;
       console.log(`id from dataset ${id}`);
-      this.$store.commit("removeTask", id);
-      this.$store.dispatch("saveTasksToLocalStorage");
+      this.$store.commit('removeTask', id, completed);
+      this.$store.dispatch('saveTasksToLocalStorage');
     },
-    editTask(el) {
+    editTask(el, completed) {
       let id = el.target.parentNode.parentNode.dataset.id;
       console.log(id);
       let editedTaskId = id * 1;
-      let index = this.$store.getters.getTaskIndexById(editedTaskId)
-      this.$store.commit("setEditedTaskIndex", index);
-      this.$store.commit("editModalTrigger");
+      let index = this.$store.getters.getTaskIndexById(editedTaskId);
+      this.$store.commit('setEditedTaskIndex', index, completed);
+      this.$store.commit('editModalTrigger');
     }
   }
 };

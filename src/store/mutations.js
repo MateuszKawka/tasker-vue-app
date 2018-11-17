@@ -8,7 +8,9 @@ export default {
     viewTrigger: (state, val) => state.showUncompleted = val,
 
     // tasks mutations
-    addNewTask: (state, task) => state.tasks = state.tasks.concat([task]),
+    addNewTask: (state, task) => {
+        state.tasks = state.tasks.concat([task])
+    },
     removeTask: (state, id) => { 
         let numberId = id * 1;
         let taskIndex = state.tasks.findIndex(x => x.id == numberId);
@@ -16,8 +18,7 @@ export default {
     },
     doneTask(state, id) { 
         let numberId = id * 1;
-        let taskIndex = state.tasks.findIndex(x => x.id == numberId);
-        console.log(taskIndex)  
+        let taskIndex = state.tasks.findIndex(x => x.id == numberId); 
         state.tasks[taskIndex].completed = !state.tasks[taskIndex].completed
     },
 

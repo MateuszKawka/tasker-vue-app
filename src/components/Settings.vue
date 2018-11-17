@@ -1,18 +1,19 @@
 <template>
 <transition name='slide'>
-  <div class='settings-container' v-if='showSettings'>
-    <p>Reset local storage</p>
-    <button type='button'>reset</button>
+  <div class='settings-container'>
+    <p>Clear storage ( use double click for that )</p>
+    <button type='button' class='button button--reset' @dblclick='resetStorage()'>reset</button>
   </div>
 </transition>
 </template>
 
 <script>
 export default {
-  name: "Settings",
-  computed: {
-    showSettings() {
-      return this.$store.state.showSettings;
+  name: 'Settings',
+  methods: {
+    resetStorage() {
+      localStorage.clear();
+      window.location.reload(true);
     }
   }
 };
@@ -22,5 +23,27 @@ export default {
 <style scoped lang="scss">
 @import '@/_variables.scss';
 
+.settings-container {
+  width: 100%;
+  height: 72vh;
+  position: fixed;
+  background: $main-color;
+  bottom: 0;
 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: column wrap;
+}
+
+.button--reset {
+  margin-top: 1rem;
+  padding: 1.5rem 4rem;
+  color: $contrast-color;
+  background: $overlay-color;
+}
+
+p {
+  color: $details-ui-color;
+}
 </style>

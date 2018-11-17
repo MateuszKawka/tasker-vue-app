@@ -9,10 +9,10 @@
 
 <script>
 export default {
-  name: "Welcome",
+  name: 'Welcome',
   data() {
     return {
-      name: ""
+      name: ''
     };
   },
   computed: {
@@ -21,28 +21,28 @@ export default {
     }
   },
   methods: {
-      addName() {
-          this.$store.commit('setName', this.name);
-          this.$store.dispatch('saveNameToLocalStorage')
-          this.$store.commit('welcomeTrigger')
-      },
-      close() {
-          this.$store.commit('setName', 'There');
-          this.$store.dispatch('saveNameToLocalStorage')
-          this.$store.commit('welcomeTrigger')
-      }
+    addName() {
+      this.$store.commit('setName', this.name);
+      this.$store.dispatch('saveNameToLocalStorage');
+      this.$store.commit('welcomeTrigger');
+    },
+    close() {
+      this.$store.commit('setName', 'There');
+      this.$store.dispatch('saveNameToLocalStorage');
+      this.$store.commit('welcomeTrigger');
+    }
   },
-  mounted(){
-      if(localStorage.getItem('name') !== null) {
-          this.$store.commit('welcomeTrigger')
-      }
+  mounted() {
+    if (localStorage.getItem('name') !== null) {
+      this.$store.commit('welcomeTrigger');
+    }
   }
 };
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped lang="scss">
-@import "@/_variables.scss";
+@import '@/_variables.scss';
 
 .welcome {
   width: 100%;
