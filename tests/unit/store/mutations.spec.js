@@ -5,8 +5,7 @@ var state = {
   showUncompleted: false,
   name: String,
   errorMsg: String,
-  tasks: [
-    {
+  tasks: [{
       title: 'task',
       id: 1,
       desc: 'task description',
@@ -21,7 +20,25 @@ var state = {
   ]
 }
 
+
 describe('store mutations tests', () => {
+  beforeEach(() => {
+    state.tasks = [{
+        title: 'task',
+        id: 1,
+        desc: 'task description',
+        completed: false
+      },
+      {
+        title: 'task 2',
+        id: 2,
+        desc: 'second task description',
+        completed: true
+      }
+    ]
+  });
+
+
   test('mutations--modalTrigger', () => {
     mutations.modalTrigger(state)
     expect(state.showModal).toBeTruthy()
@@ -34,6 +51,7 @@ describe('store mutations tests', () => {
 
   test('mutations--doneTask', () => {
     mutations.doneTask(state, 1)
+    console.log(state.tasks[0].completed)
     expect(state.tasks[0].completed).toBeTruthy()
   })
 
@@ -86,8 +104,7 @@ describe('store mutations tests', () => {
       id: 3,
       desc: 'new task',
       completed: false
-    }
-    ]
+    }]
     mutations.updateTasks(state, tasks)
     expect(state.tasks).toHaveLength(1)
   })

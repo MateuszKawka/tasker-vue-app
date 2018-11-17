@@ -1,8 +1,7 @@
 import getters from '@/store/getters.js';
 
 var state = {
-    tasks: [
-        {
+    tasks: [{
             title: 'task',
             id: 1,
             desc: 'task description',
@@ -25,21 +24,13 @@ var state = {
 
 describe('store getters tests', () => {
     test('getters--numberOfTasks', () => {
-        expect(getters.numberOfTasks(state)).toEqual(3)
+        expect(getters.numberOfTasks(state)).toEqual(2)
     })
-    
-    test('getters--listOfTask', () => {
-        expect(getters.listOfTask(state)).toHaveLength(2)
-    })
-    
-    test('getters--listOfCompletedTasks', () => {
-        expect(getters.listOfCompletedTasks(state)).toHaveLength(1)
-    })
-    
+
     test('getters--getTaskIndexById', () => {
         expect(getters.getTaskIndexById(state)(3)).toEqual(2)
     })
-    
+
     test('getters--getTaskByIndex', () => {
         expect(getters.getTaskByIndex(state)(0).id).toEqual(1)
     })
